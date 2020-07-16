@@ -1,0 +1,80 @@
+.fieldset {
+  margin: 20px;
+  background: #fafafa;
+  padding: 20px;
+  display: inline-block;
+}
+.fieldsetTitle {
+  margin-top: 0;
+}
+.panels {
+  display: flex;
+}
+.panel {
+  display: flex;
+  border-radius: 10px 10px 0 0;
+  overflow: hidden;
+  flex-direction: column;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+  color: #666;
+}
+.panel + .panel {
+  margin-left: 20px;
+}
+.summaryPaneHeader {
+  background: #999;
+}
+.panelHeader {
+  background: #999;
+  display: flex;
+  text-align: center;
+  color: white;
+  font-weight: bold;
+  height: 50px;
+  align-items: center;
+  justify-content: space-around;
+}
+.panelBody {
+  background: white;
+  flex: 1;
+  padding: 20px;
+  min-height: 200px;
+  max-height: 200px;
+  overflow: scroll;
+}
+.simList {
+}
+.listItem {
+  background: white;
+  display: flex;
+  height: 34px;
+  align-items: center;
+  min-width: 200px;
+}
+.simListItem {
+  min-width: 300px;
+}
+.listItemLabel {
+  margin: 0 10px;
+}
+.defaultButton {
+  -webkit-appearance: none;
+  appearance: none;
+  border: 0 none;
+  font-size: 0.8em;
+  padding: 6px 14px;
+  background: #ddd;
+  border-radius: 40px;
+  cursor: pointer;
+  margin-left: auto;
+  outline: none;
+}
+.defaultButton:disabled {
+  background: #2DBE60;
+  color: white;
+  cursor: default;
+}
+.bodyTitle {
+  margin: 1em 0;
+  color: #2DBE60;
+}
