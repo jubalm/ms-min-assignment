@@ -1,15 +1,18 @@
 import React from 'react';
-import { connect } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { toggleMinSelect, setDefaultMin } from '../actions';
 import styles from './style.module.css';
 
-const AssignMINToBranch = ({ mins, toggle, setDefault }) => {
+const AssignMINToBranch = () => {
+  const mins = useSelector((state) => state.mins);
+  const dispatch = useDispatch();
+
   const handleSelect = (e) => {
-    toggle(e.target.value);
+    dispatch(toggleMinSelect(e.target.value));
   };
 
   const handleSetDefault = (e) => {
-    setDefault(e.target.id);
+    dispatch(setDefaultMin(e.target.id))
   };
 
   return (
@@ -23,32 +26,34 @@ const AssignMINToBranch = ({ mins, toggle, setDefault }) => {
           </div>
           <div className={styles.panelBody}>
             <div className={styles.simList}>
-              {mins.filter(m=> m.type === 'dealer').map((min) => {
-                return (
-                  <div
-                    className={`${styles.listItem} ${styles.simListItem}`}
-                    key={min.id}
-                  >
-                    <input
-                      type="checkbox"
-                      checked={min.selected}
-                      value={min.id}
-                      onChange={handleSelect}
-                    />
-                    <span className={styles.listItemLabel}>{min.id}</span>
-                    {min.selected ? (
-                      <button
-                        disabled={min.default}
-                        className={styles.defaultButton}
-                        id={min.id}
-                        onClick={handleSetDefault}
-                      >
-                        Default
-                      </button>
-                    ) : null}
-                  </div>
-                );
-              })}
+              {mins
+                .filter((m) => m.type === 'dealer')
+                .map((min) => {
+                  return (
+                    <div
+                      className={`${styles.listItem} ${styles.simListItem}`}
+                      key={min.id}
+                    >
+                      <input
+                        type="checkbox"
+                        checked={min.selected}
+                        value={min.id}
+                        onChange={handleSelect}
+                      />
+                      <span className={styles.listItemLabel}>{min.id}</span>
+                      {min.selected ? (
+                        <button
+                          disabled={min.default}
+                          className={styles.defaultButton}
+                          id={min.id}
+                          onClick={handleSetDefault}
+                        >
+                          Default
+                        </button>
+                      ) : null}
+                    </div>
+                  );
+                })}
             </div>
           </div>
         </div>
@@ -59,32 +64,34 @@ const AssignMINToBranch = ({ mins, toggle, setDefault }) => {
           </div>
           <div className={styles.panelBody}>
             <div className={styles.simList}>
-              {mins.filter(m=> m.type === 'retailer').map((min) => {
-                return (
-                  <div
-                    className={`${styles.listItem} ${styles.simListItem}`}
-                    key={min.id}
-                  >
-                    <input
-                      type="checkbox"
-                      checked={min.selected}
-                      value={min.id}
-                      onChange={handleSelect}
-                    />
-                    <span className={styles.listItemLabel}>{min.id}</span>
-                    {min.selected ? (
-                      <button
-                        disabled={min.default}
-                        className={styles.defaultButton}
-                        id={min.id}
-                        onClick={handleSetDefault}
-                      >
-                        Default
-                      </button>
-                    ) : null}
-                  </div>
-                );
-              })}
+              {mins
+                .filter((m) => m.type === 'retailer')
+                .map((min) => {
+                  return (
+                    <div
+                      className={`${styles.listItem} ${styles.simListItem}`}
+                      key={min.id}
+                    >
+                      <input
+                        type="checkbox"
+                        checked={min.selected}
+                        value={min.id}
+                        onChange={handleSelect}
+                      />
+                      <span className={styles.listItemLabel}>{min.id}</span>
+                      {min.selected ? (
+                        <button
+                          disabled={min.default}
+                          className={styles.defaultButton}
+                          id={min.id}
+                          onClick={handleSetDefault}
+                        >
+                          Default
+                        </button>
+                      ) : null}
+                    </div>
+                  );
+                })}
             </div>
           </div>
         </div>
@@ -120,13 +127,4 @@ const AssignMINToBranch = ({ mins, toggle, setDefault }) => {
   );
 };
 
-const mapStateToProps = (state) => ({
-  mins: state.mins,
-});
-
-const mapDispatchToProps = (dispatch) => ({
-  toggle: (id) => dispatch(toggleMinSelect(id)),
-  setDefault: (id) => dispatch(setDefaultMin(id)),
-});
-
-export default connect(mapStateToProps, mapDispatchToProps)(AssignMINToBranch);
+export default AssignMINToBranch;
