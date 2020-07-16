@@ -39,19 +39,21 @@
   flex: 1;
   padding: 20px;
   min-height: 200px;
+  min-width: 200px;
   max-height: 200px;
-  overflow: scroll;
+  overflow-y: scroll;
 }
 .simList {
 }
 .listItem {
   background: white;
   display: flex;
-  height: 34px;
+  height: 24px;
   align-items: center;
   min-width: 200px;
 }
 .simListItem {
+  height: 34px;
   min-width: 300px;
 }
 .listItemLabel {
