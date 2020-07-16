@@ -40,11 +40,16 @@ const minReducers = (state = initialState, action) => {
             min.id === action.id ? min.default && !min.selected : min.default,
         }))
         .reduce((r, min, _, a) => {
+          const type = a.find((min) => action.id === min.id).type;
           const noDefaults =
-            a.every((m) => !m.default) && r.every((m) => !m.default);
+            a.filter((m) => m.type === type).every((m) => !m.default) &&
+            r.filter((m) => m.type === type).every((m) => !m.default);
           const newMin = {
             ...min,
-            default: noDefaults && min.selected ? true : min.default,
+            default:
+              min.type === type && noDefaults && min.selected
+                ? true
+                : min.default,
           };
           return r.concat([newMin]);
         }, []);
